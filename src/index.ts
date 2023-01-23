@@ -46,6 +46,15 @@ try {
   core.setFailed(error as Error);
 }
 
+function get_list_of_card_names_in_board(boardId) {
+  // Fetch all cards in the board
+  const cards = await getCardsOfListOrBoard(boardId);
+
+  // Return a list of card names
+  return cards.map((card) => card.name);
+  
+}
+
 function issueOpenedCreateCard() {
   const issue = ghPayload.issue;
   const issueNumber = issue?.number;
