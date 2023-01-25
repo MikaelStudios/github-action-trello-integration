@@ -76,7 +76,8 @@ function get_list_of_card_names_in_board() {
       console.log(card.name);
       return card.name != '';
     });
-  }).then((allValidCards)=>
+  })
+  .then((allValidCards)=>
   {
     allValidCards.forEach((card)=>
     {
