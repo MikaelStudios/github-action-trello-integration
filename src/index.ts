@@ -50,11 +50,24 @@ try {
 }
 
 function get_list_of_card_names_in_board() {
+  
+  const sourceList: string = process.env.TRELLO_SOURCE_LIST_ID as string;
+  const targetList: string = process.env.TRELLO_TARGET_LIST_ID as string;
+  const additionalMemberIds: string[] = [];
+
+  if (
+    (sourceList && !validateListExistsOnBoard(sourceList)) ||
+    !targetList ||
+    !validateListExistsOnBoard(targetList)
+  ) {
+    core.setFailed('TRELLO_SOURCE_LIST_ID or TRELLO_TARGET_LIST_ID is invalid.');
+    return;
+  }
   // Fetch all cards in the board
-  const cards = await getCardsOfListOrBoard(boardId);
+  const cards = await getCardsOfListOrBoard(sourceList);
 
   // Return a list of card names
-  return cards.map((card) => card.name);
+   cards.ForEach((card) => {console.Log(card.name)});
   
 }
 
