@@ -50,7 +50,7 @@ try {
 }
 
 function get_list_of_card_names_in_board() {
-  console.log("starting test case");
+  console.log("starting : test case");
   const sourceList: string = process.env.TRELLO_SOURCE_LIST_ID as string;
   const targetList: string = process.env.TRELLO_TARGET_LIST_ID as string;
   const additionalMemberIds: string[] = [];
