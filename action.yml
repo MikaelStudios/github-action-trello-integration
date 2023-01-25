@@ -9,7 +9,7 @@ inputs:
     required: true
   TRELLO_API_TOKEN:
     description: 'Desired action to do on a Card'
-    required: true
+    required: false
   TRELLO_BOARD_ID:
     description: 'Desired action to do on a Card'
     required: true
