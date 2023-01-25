@@ -1,6 +1,6 @@
 {
   "name": "yle-gh-action--trello-integration",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Github workflow action to make Trello cards abide what happens in Github",
   "main": "dist/index.js",
   "scripts": {

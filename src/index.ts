@@ -25,7 +25,7 @@ const action = core.getInput('action');
  */
 const ghPayload: any = github.context.payload;
 const repository: any = github.context.repo;
-
+console.log("Hello");
 if (!action) {
   throw Error('Action is not set.');
 }
@@ -38,7 +38,7 @@ try {
     case 'pull_request_event_move_card':
       pullRequestEventMoveCard();
       break;
-    case: 'test_case':
+    case 'test_case':
       get_list_of_card_names_in_board();
       break;
       
@@ -64,10 +64,16 @@ function get_list_of_card_names_in_board() {
     return;
   }
   // Fetch all cards in the board
-  const cards = await getCardsOfListOrBoard(sourceList);
+  const cards = getCardsOfListOrBoard(sourceList);
 
   // Return a list of card names
-   cards.ForEach((card) => {console.Log(card.name)});
+  getCardsOfListOrBoard(sourceList).then((card) => 
+  {
+    console.log(card.toString)
+    // card.forEach((_c) => {
+    //   console.log(_c.name);
+      
+    });
   
 }
 
