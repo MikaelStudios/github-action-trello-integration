@@ -38,7 +38,10 @@ try {
     case 'pull_request_event_move_card':
       pullRequestEventMoveCard();
       break;
-
+    case: 'test_case':
+      get_list_of_card_names_in_board();
+      break;
+      
     default:
       throw Error('Action is not supported: ' + action);
   }
@@ -46,7 +49,7 @@ try {
   core.setFailed(error as Error);
 }
 
-function get_list_of_card_names_in_board(boardId) {
+function get_list_of_card_names_in_board() {
   // Fetch all cards in the board
   const cards = await getCardsOfListOrBoard(boardId);
 
