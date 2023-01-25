@@ -32,6 +32,7 @@ jobs:
         run: npm run build
 
       - name: Run my action
+        id: Run
         uses: ./
         with:
           action: test_case
@@ -44,4 +45,8 @@ jobs:
           TRELLO_SOURCE_LIST_ID: '62f0e71d79853664ed620138'
           # List "Needs review"
           TRELLO_TARGET_LIST_ID: '63ceb47c53abdd03bea30b9c'
+      
+      - name: Read Output 
+      run: |
+          echo "${{steps.Run.outputs.patchNote}}"
 

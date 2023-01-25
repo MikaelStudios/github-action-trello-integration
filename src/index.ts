@@ -73,16 +73,19 @@ function get_list_of_card_names_in_board() {
     }
     return cardsOnList.filter((card) =>
     {
-      console.log(card.name);
+      //console.log(card.name);
       return card.name != '';
     });
   })
   .then((allValidCards)=>
   {
+    var patchNote ='';
     allValidCards.forEach((card)=>
     {
         console.log(card.name);
+        patchNote += card.name + '\n';
     })
+    core.setOutput('patchNote', patchNote);
   })
 }
 
