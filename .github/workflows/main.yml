@@ -47,6 +47,6 @@ jobs:
           TRELLO_TARGET_LIST_ID: '63ceb47c53abdd03bea30b9c'
       
       - name: Read Output 
-      run: |
-          echo "${{steps.Run.outputs.patchNote}}"
+        run: |
+            echo "${{steps.Run.outputs.patchNote}}"
 
