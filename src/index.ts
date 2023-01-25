@@ -64,7 +64,7 @@ function get_list_of_card_names_in_board() {
     return;
   }
   // Fetch all cards in the board
-  getCardsOfListOrBoard(sourceList).
+  getCardsOfListOrBoard(targetList).
   then((cardsOnList) => {
     // Filter cards to those which refer to the Github Issues mentioned in the PR.
     if (typeof cardsOnList === 'string') {
