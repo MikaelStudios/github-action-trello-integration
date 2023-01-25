@@ -7,7 +7,6 @@ inputs:
   TRELLO_API_KEY:
     description: 'Desired action to do on a Card'
     required: false
-    default: ${{ secrets.TRELLO_API_KEY }}
   TRELLO_API_TOKEN:
     description: 'Desired action to do on a Card'
     required: false
