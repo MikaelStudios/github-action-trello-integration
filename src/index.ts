@@ -64,17 +64,24 @@ function get_list_of_card_names_in_board() {
     return;
   }
   // Fetch all cards in the board
-  const cards = getCardsOfListOrBoard(sourceList);
-
-  // Return a list of card names
-  getCardsOfListOrBoard(sourceList).then((card) => 
-  {
-    console.log(card.toString)
-    // card.forEach((_c) => {
-    //   console.log(_c.name);
-      
+  getCardsOfListOrBoard(sourceList).
+  then((cardsOnList) => {
+    // Filter cards to those which refer to the Github Issues mentioned in the PR.
+    if (typeof cardsOnList === 'string') {
+      core.setFailed(cardsOnList);
+      return [];
+    }
+    return cardsOnList.filter((card) =>
+    {
+      return card.name != '';
     });
-  
+  }).then((allValidCards)=>
+  {
+    allValidCards.forEach((card)=>
+    {
+        console.log(card.name);
+    })
+  })
 }
 
 function issueOpenedCreateCard() {

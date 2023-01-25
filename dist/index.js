@@ -134,7 +134,7 @@ if(!apiKey){
 if(!apiToken){throw Error("API Token missing");}
 if(!trelloBoard){throw Error("Trello Board missing");}
 if (!apiKey || !apiToken || !trelloBoard) {
-    //throw Error('Trello API key and/or token or Board ID is missing.');
+    throw Error('Trello API key and/or token or Board ID is missing.');
 }
 /**
  * Build API URI.
