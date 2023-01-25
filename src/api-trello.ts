@@ -17,6 +17,10 @@ const apiKey: string = process.env.TRELLO_API_KEY || '';
 const apiToken: string = process.env.TRELLO_API_TOKEN || '';
 const debug: string | boolean = process.env.TRELLO_API_DEBUG || false;
 
+if(!apiKey){throw Error("API key missing");}
+if(!apiToken){throw Error("API Token missing");}
+if(!trelloBoard){throw Error("Trello Board missing");}
+if (!apiKey || !apiToken || !trelloBoard) {
 if (!apiKey || !apiToken || !trelloBoard) {
   throw Error('Trello API key and/or token or Board ID is missing.');
 }
