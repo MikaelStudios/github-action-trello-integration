@@ -23,7 +23,10 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci 
+      
+      - name: Install ncc
+        run: npm i -g @vercel/ncc
 
       - name: Build
         run: npm run build
