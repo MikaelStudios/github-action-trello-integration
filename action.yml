@@ -5,10 +5,20 @@ inputs:
     description: 'Desired action to do on a Card'
     required: true
   TRELLO_API_KEY:
+    description: 'Desired action to do on a Card'
+    required: true
   TRELLO_API_TOKEN:
+    description: 'Desired action to do on a Card'
+    required: true
   TRELLO_BOARD_ID:
+    description: 'Desired action to do on a Card'
+    required: true
   TRELLO_SOURCE_LIST_ID:
+    description: 'Desired action to do on a Card'
+    required: true
   GITHUB_TOKEN:
+    description: 'Desired action to do on a Card'
+    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'
