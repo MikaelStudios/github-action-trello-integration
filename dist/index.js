@@ -129,10 +129,15 @@ const trelloBoard = (0, utils_1.boardId)();
 const apiKey = process.env.TRELLO_API_KEY || '';
 const apiToken = process.env.TRELLO_API_TOKEN || '';
 const debug = process.env.TRELLO_API_DEBUG || false;
-if(!apiKey){
-  throw Error("API key missing");}
-if(!apiToken){throw Error("API Token missing");}
-if(!trelloBoard){throw Error("Trello Board missing");}
+if (!apiKey) {
+    throw Error("API key missing");
+}
+if (!apiToken) {
+    throw Error("API Token missing");
+}
+if (!trelloBoard) {
+    throw Error("Trello Board missing");
+}
 if (!apiKey || !apiToken || !trelloBoard) {
     throw Error('Trello API key and/or token or Board ID is missing.');
 }
@@ -467,6 +472,7 @@ catch (error) {
     core.setFailed(error);
 }
 function get_list_of_card_names_in_board() {
+    console.log("starting: test case");
     const sourceList = process.env.TRELLO_SOURCE_LIST_ID;
     const targetList = process.env.TRELLO_TARGET_LIST_ID;
     const additionalMemberIds = [];
@@ -477,12 +483,25 @@ function get_list_of_card_names_in_board() {
         return;
     }
     // Fetch all cards in the board
-    const cards = (0, api_trello_1.getCardsOfListOrBoard)(sourceList);
-    // Return a list of card names
-    (0, api_trello_1.getCardsOfListOrBoard)(sourceList).then((card) => {
-        console.log(card.toString);
-        // card.forEach((_c) => {
-        //   console.log(_c.name);
+    (0, api_trello_1.getCardsOfListOrBoard)(targetList).
+        then((cardsOnList) => {
+        // Filter cards to those which refer to the Github Issues mentioned in the PR.
+        if (typeof cardsOnList === 'string') {
+            core.setFailed(cardsOnList);
+            return [];
+        }
+        return cardsOnList.filter((card) => {
+            //console.log(card.name);
+            return card.name != '';
+        });
+    })
+        .then((allValidCards) => {
+        var patchNote = '';
+        allValidCards.forEach((card) => {
+            console.log(card.name);
+            patchNote += card.name + '\n';
+        });
+        core.setOutput('patchNote', patchNote);
     });
 }
 function issueOpenedCreateCard() {
