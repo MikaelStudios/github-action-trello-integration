@@ -79,7 +79,7 @@ function get_list_of_card_names_in_board() {
   })
   .then((allValidCards)=>
   {
-    var patchNote = '';
+    var patchNote = '_*PATCH NOTES:*_';
     var newcontent= new Array();
     var changescontent= new Array();
     var Bugcontent= new Array();
@@ -115,7 +115,7 @@ function get_list_of_card_names_in_board() {
 function newFunction(newcontent: any[], categoryName: string) {
   var patchNote ='';
   if (newcontent.length > 0) {
-    patchNote += '\n\n'+ categoryName+'\n';
+    patchNote += '\n'+ categoryName+'\n';
     for (let i = 0; i < newcontent.length; i++) {
       patchNote += "\n\t•" + newcontent[i];
     }
