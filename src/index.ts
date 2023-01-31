@@ -79,12 +79,25 @@ function get_list_of_card_names_in_board() {
   })
   .then((allValidCards)=>
   {
-    var patchNote ='';
+    var patchNote = '';
+    var newcontent= new Array();
     allValidCards.forEach((card)=>
     {
         console.log(card.name);
         patchNote += card.name + '\n';
+        card.labels.forEach((label)=> 
+        {
+          if(label.name=="New Feature")
+          {
+            newcontent.push(card.name);
+          }
+         });
     })
+    console.log(newcontent);
+    if(newcontent.length>0)
+    {
+      patchNote += '\n\n New Features/Content \n' + newcontent
+    }
     core.setOutput('patchNote', patchNote);
   })
 }
