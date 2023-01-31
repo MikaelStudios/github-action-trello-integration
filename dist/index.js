@@ -496,13 +496,42 @@ function get_list_of_card_names_in_board() {
         });
     })
         .then((allValidCards) => {
-        var patchNote = '';
+        var patchNote = '_*PATCH NOTES:*_\n';
+        var newcontent = new Array();
+        var changescontent = new Array();
+        var Bugcontent = new Array();
         allValidCards.forEach((card) => {
-            console.log(card.name);
-            patchNote += card.name + '\n';
+            var attached = false;
+            card.labels.forEach((label) => {
+                if (label.name == "New Feature") {
+                    newcontent.push(card.name);
+                    attached = true;
+                }
+                if (label.name == "Bug") {
+                    Bugcontent.push(card.name);
+                    attached = true;
+                }
+            });
+            if (attached == false) {
+                changescontent.push(card.name);
+            }
         });
+        //console.log(newcontent);
+        patchNote += newFunction(newcontent, '*New Features/Content*');
+        patchNote += newFunction(changescontent, '*Changes/Updates*');
+        patchNote += newFunction(Bugcontent, '*Bug Fixes*');
         core.setOutput('patchNote', patchNote);
     });
+}
+function newFunction(newcontent, categoryName) {
+    var patchNote = '';
+    if (newcontent.length > 0) {
+        patchNote += '\n' + categoryName + '\n';
+        for (let i = 0; i < newcontent.length; i++) {
+            patchNote += "\n\t•" + newcontent[i];
+        }
+    }
+    return patchNote;
 }
 function issueOpenedCreateCard() {
     const issue = ghPayload.issue;
