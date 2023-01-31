@@ -79,7 +79,7 @@ function get_list_of_card_names_in_board() {
   })
   .then((allValidCards)=>
   {
-    var patchNote = '_*PATCH NOTES:*_';
+    var patchNote = '_*PATCH NOTES:*_\n';
     var newcontent= new Array();
     var changescontent= new Array();
     var Bugcontent= new Array();
