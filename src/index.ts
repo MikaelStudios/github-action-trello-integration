@@ -85,8 +85,8 @@ function get_list_of_card_names_in_board() {
     var Bugcontent= new Array();
     allValidCards.forEach((card)=>
     {
-        console.log(card.name);
-        patchNote += card.name + '\n';
+        //console.log(card.name);
+        //patchNote += card.name + '\n';
         var attached = false;
         card.labels.forEach((label)=> 
         {
@@ -106,10 +106,10 @@ function get_list_of_card_names_in_board() {
           changescontent.push(card.name);
          }
     })
-    console.log(newcontent);
+    //console.log(newcontent);
     patchNote += newFunction(newcontent, patchNote,'*New Features/Content*');
     patchNote += newFunction(changescontent, patchNote,'*Changes/Updates*');
-    patchNote += newFunction(newcontent, patchNote,'*Bug Fixes*');
+    patchNote += newFunction(Bugcontent, patchNote,'*Bug Fixes*');
     core.setOutput('patchNote', patchNote);
   })
 }
