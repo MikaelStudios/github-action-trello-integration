@@ -17,6 +17,8 @@ import { cardHasPrLinked, isIssueAlreadyLinkedTo, validateListExistsOnBoard } fr
 
 const verbose: string | boolean = process.env.TRELLO_ACTION_VERBOSE || false;
 const action = core.getInput('action');
+const updateType = core.getInput('updateType');
+
 
 /**
  * GW webhook payload.
@@ -25,7 +27,6 @@ const action = core.getInput('action');
  */
 const ghPayload: any = github.context.payload;
 const repository: any = github.context.repo;
-console.log("Hello");
 if (!action) {
   throw Error('Action is not set.');
 }
@@ -45,10 +46,45 @@ try {
     default:
       throw Error('Action is not supported: ' + action);
   }
+
+  if(!updateType)
+  {
+    throw Error("updateType is not set");
+  }
+  get_Patch_VersionNumber();
+
 } catch (error) {
   core.setFailed(error as Error);
 }
+function get_Patch_VersionNumber()
+{
+  var currentVersion = '0.0.0';
+  var versionNos : string[];
+  versionNos = currentVersion.split('.');
 
+  switch(updateType)
+  {
+    case 'fix':
+      UpdateVersionsNos(2);
+      break;
+    case 'feat':
+      UpdateVersionsNos(1);
+      break;
+    case 'change':
+      UpdateVersionsNos(0);
+      break;
+    default:
+      throw Error('Update type not supported: '+ updateType);
+  }
+
+  function UpdateVersionsNos(index: number) {
+    var nor = Number(versionNos[index]) + 1;
+    versionNos[index] = nor.toString();
+  }
+
+  currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
+  core.setOutput('currentVersion', currentVersion);
+}
 function get_list_of_card_names_in_board() {
   console.log("starting: test case");
   const sourceList: string = process.env.TRELLO_SOURCE_LIST_ID as string;

@@ -4,6 +4,12 @@ inputs:
   action:
     description: 'Desired action to do on a Card'
     required: true
+  updateType:
+    description: 'Desired action to do on a Card'
+    required: true
+  currentVersion:
+    description: 'Desired action to do on a Card'
+    required: true
   TRELLO_API_KEY:
     description: 'Desired action to do on a Card'
     required: false
