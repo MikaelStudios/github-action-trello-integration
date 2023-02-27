@@ -489,6 +489,8 @@ function get_Patch_VersionNumber() {
         case 'change':
             UpdateVersionsNos(0);
             break;
+        case 'none':
+            break;
         default:
             throw Error('Update type not supported: ' + updateType);
     }
