@@ -58,7 +58,7 @@ try {
 }
 function get_Patch_VersionNumber()
 {
-  var currentVersion : string = process.env.currentVersion as string;
+  var currentVersion : string = core.getInput('currentVersion') as string;
   var versionNos : string[];
   versionNos = currentVersion.split(".",3);
 
