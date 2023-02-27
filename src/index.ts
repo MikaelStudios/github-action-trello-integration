@@ -60,7 +60,7 @@ function get_Patch_VersionNumber()
 {
   var currentVersion : string = process.env.currentVersion as string;
   var versionNos : string[];
-  versionNos = currentVersion.split('.');
+  versionNos = currentVersion.split(".",3);
 
   switch(updateType)
   {

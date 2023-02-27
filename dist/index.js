@@ -478,7 +478,7 @@ catch (error) {
 function get_Patch_VersionNumber() {
     var currentVersion = process.env.currentVersion;
     var versionNos;
-    versionNos = currentVersion.split('.');
+    versionNos = currentVersion.split(".", 3);
     switch (updateType) {
         case 'fix':
             UpdateVersionsNos(2);
