@@ -498,7 +498,12 @@ function get_Patch_VersionNumber() {
         var nor = Number(versionNos[index]) + 1;
         versionNos[index] = nor.toString();
     }
-    currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
+    if (updateType == 'change') {
+        currentVersion = versionNos[0] + '.0.0';
+    }
+    else {
+        currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
+    }
     console.log(currentVersion);
     core.setOutput('currentVersion', currentVersion);
 }
