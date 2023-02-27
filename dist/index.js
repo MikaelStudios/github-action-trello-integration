@@ -476,7 +476,7 @@ catch (error) {
     core.setFailed(error);
 }
 function get_Patch_VersionNumber() {
-    var currentVersion = process.env.currentVersion;
+    var currentVersion = core.getInput('currentVersion');
     var versionNos;
     versionNos = currentVersion.split(".", 3);
     switch (updateType) {
