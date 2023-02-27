@@ -143,9 +143,16 @@ function get_list_of_card_names_in_board() {
          }
     });
     //console.log(newcontent);
+    if(newcontent.length == 0 && changescontent.length == 0 && Bugcontent.length==0)
+    {
+      patchNote += "Quick bug fixes"
+    }
+    else
+    {
     patchNote += newFunction(newcontent,'*New Features/Content*');
     patchNote += newFunction(changescontent,'*Changes/Updates*');
     patchNote += newFunction(Bugcontent,'*Bug Fixes*');
+    }
     core.setOutput('patchNote', patchNote);
   })
 }
