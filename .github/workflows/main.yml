@@ -36,6 +36,8 @@ jobs:
         uses: ./
         with:
           action: test_case
+          updateType: fix
+          currentVersion: '0.0.1'
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN_TRELLO }}
           TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
@@ -45,8 +47,7 @@ jobs:
           TRELLO_SOURCE_LIST_ID: '62f0e71d79853664ed620138'
           # List "Needs review"
           TRELLO_TARGET_LIST_ID: '63ceb47c53abdd03bea30b9c'
-          updateType: 'fix'
-          currentVersion: '0.0.1'
+
       
       - name: Read Output 
         run: |
