@@ -73,6 +73,7 @@ function get_Patch_VersionNumber()
     case 'change':
       UpdateVersionsNos(0);
       break;
+      
     default:
       throw Error('Update type not supported: '+ updateType);
   }
@@ -83,6 +84,7 @@ function get_Patch_VersionNumber()
   }
 
   currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
+  console.log(currentVersion);
   core.setOutput('currentVersion', currentVersion);
 }
 function get_list_of_card_names_in_board() {

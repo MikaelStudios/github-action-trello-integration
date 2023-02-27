@@ -442,6 +442,7 @@ const api_trello_1 = __nccwpck_require__(8486);
 const utils_1 = __nccwpck_require__(8234);
 const verbose = process.env.TRELLO_ACTION_VERBOSE || false;
 const action = core.getInput('action');
+const updateType = core.getInput('updateType');
 /**
  * GW webhook payload.
  *
@@ -449,7 +450,6 @@ const action = core.getInput('action');
  */
 const ghPayload = github.context.payload;
 const repository = github.context.repo;
-console.log("Hello");
 if (!action) {
     throw Error('Action is not set.');
 }
@@ -467,9 +467,38 @@ try {
         default:
             throw Error('Action is not supported: ' + action);
     }
+    if (!updateType) {
+        throw Error("updateType is not set");
+    }
+    get_Patch_VersionNumber();
 }
 catch (error) {
     core.setFailed(error);
+}
+function get_Patch_VersionNumber() {
+    var currentVersion = process.env.currentVersion;
+    var versionNos;
+    versionNos = currentVersion.split('.');
+    switch (updateType) {
+        case 'fix':
+            UpdateVersionsNos(2);
+            break;
+        case 'feat':
+            UpdateVersionsNos(1);
+            break;
+        case 'change':
+            UpdateVersionsNos(0);
+            break;
+        default:
+            throw Error('Update type not supported: ' + updateType);
+    }
+    function UpdateVersionsNos(index) {
+        var nor = Number(versionNos[index]) + 1;
+        versionNos[index] = nor.toString();
+    }
+    currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
+    console.log(currentVersion);
+    core.setOutput('currentVersion', currentVersion);
 }
 function get_list_of_card_names_in_board() {
     console.log("starting: test case");
