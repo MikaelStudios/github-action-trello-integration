@@ -482,12 +482,15 @@ function get_Patch_VersionNumber() {
     switch (updateType) {
         case 'fix':
             UpdateVersionsNos(2);
+            currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
             break;
         case 'feat':
             UpdateVersionsNos(1);
+            currentVersion = versionNos[0] + '.' + versionNos[1] + '.0';
             break;
         case 'change':
             UpdateVersionsNos(0);
+            currentVersion = versionNos[0] + '.0.0';
             break;
         case 'none':
             break;
@@ -497,12 +500,6 @@ function get_Patch_VersionNumber() {
     function UpdateVersionsNos(index) {
         var nor = Number(versionNos[index]) + 1;
         versionNos[index] = nor.toString();
-    }
-    if (updateType == 'change') {
-        currentVersion = versionNos[0] + '.0.0';
-    }
-    else {
-        currentVersion = versionNos[0] + '.' + versionNos[1] + '.' + versionNos[2];
     }
     console.log(currentVersion);
     core.setOutput('currentVersion', currentVersion);
