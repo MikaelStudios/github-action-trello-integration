@@ -558,6 +558,7 @@ function get_list_of_card_names_in_board() {
             patchNote += newFunction(changescontent, '*Changes/Updates*');
             patchNote += newFunction(Bugcontent, '*Bug Fixes*');
         }
+        patchNote = patchNote.replace('\'', "");
         core.setOutput('patchNote', patchNote);
     });
 }
